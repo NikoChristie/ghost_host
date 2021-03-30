@@ -1,9 +1,5 @@
 import socket
-from getkey import getkey
-
-special_chars = {
-    0x7f : 'backspace'
-}
+from getkey import getkey, keys
 
 HOST = '' # Host IP
 PORT = 65432 # Port to listen on (non-privileged ports are > 1023)
@@ -16,18 +12,24 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         print('Connected by', addr)
         while True:
 
-            key = getkey()
-
             data = conn.recv(1024) # useless
-
-            # print(f'{list(special_chars.keys())} -> {ord(key)}')
-
-            if ord(key) in list(special_chars.keys()):
-                key = special_chars[ord(key)]
-            
-            if len(data) == 0:
-                print(f'{key} : {ord(key)}')
 
             if not data:
                 break
-            conn.sendall(key.encode('ascii'))
+
+            key = keys.name(getkey())
+            print(key)
+
+            if key is not None:
+
+                key = key.lower()
+
+                if 'shift_' in key:
+                    key = key.split('shift_')[1].upper()
+
+                print(f'{key}', end='')
+                
+                conn.sendall(key.encode('ascii'))
+            else:
+                print('key is None')
+                conn.sendall(''.encode('ascii'))
