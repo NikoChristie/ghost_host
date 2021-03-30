@@ -5,8 +5,8 @@ special_chars = {
     0x7f : 'backspace'
 }
 
-HOST = '10.0.0.150' # '127.0.0.1'  # Standard loopback interface address (localhost)
-PORT = 65432        # Port to listen on (non-privileged ports are > 1023)
+HOST = '' # Host IP
+PORT = 65432 # Port to listen on (non-privileged ports are > 1023)
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.bind((HOST, PORT))
