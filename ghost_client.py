@@ -1,11 +1,9 @@
-from os import F_TEST, terminal_size
 import socket
-from typing import get_type_hints
+from typing import Text
 import pyautogui
 
 HOST = '' # The server's hostname or IP address
-PORT = 65432 # The port used by the server
-
+PORT = 65432        # The port used by the server
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     
@@ -18,5 +16,6 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
 
         if len(data) == 1:
             print(f'{data} : {hex(ord(data))}')
-
+        else:
+            print(f'{data}')
         pyautogui.press(data)
