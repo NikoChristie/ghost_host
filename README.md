@@ -9,3 +9,6 @@ Dependecies:
 pyautogui
 socket
 getkey
+
+
+DONT EVER USE THIS, I DIDNT KNOW WHAT SSH WAS WHEN I MADE THIS, USE SSH INSTEAD
